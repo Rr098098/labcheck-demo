@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102744">
+<title>LabCheck Mobile</title>
+<style>
+:root{--n:#102744;--b:#2478df;--bg:#f4f7fb;--line:#e3eaf4;--mut:#71809a;--g:#159b61;--r:#df4545;--o:#e8a12c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#183153;font-family:Arial,sans-serif}.app{max-width:1100px;margin:auto;display:flex;min-height:100vh}.side{width:225px;background:var(--n);color:white;padding:20px 12px}.brand{font-size:25px;font-weight:bold;margin-bottom:30px}.brand span{color:#61b6ff}.side button{display:block;width:100%;text-align:left;border:0;background:none;color:#dce7f7;padding:13px 10px;border-radius:10px;margin:3px 0}.side button.active,.side button:hover{background:#2d6098;color:white}.main{flex:1;min-width:0}.top{background:white;padding:15px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.content{padding:22px}.title{display:flex;justify-content:space-between;gap:10px;margin-bottom:18px}.title h1{font-size:26px;margin:0}.mut{color:var(--mut);font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 5px 20px #17345b0b;margin-top:15px}.metric strong{font-size:27px}.metric p{font-size:12px;color:var(--mut);line-height:1.5}.btn{border:0;border-radius:9px;padding:11px 14px;background:var(--b);color:white;font-weight:bold;font-size:12px}.btn.alt{background:#eaf2ff;color:#1c65bc}.input,.select,.textarea{width:100%;padding:12px;border:1px solid #d8e3f1;border-radius:9px;background:white;color:#183153}.search{display:grid;grid-template-columns:1fr auto;gap:8px}.two{display:grid;grid-template-columns:1.2fr 1fr;gap:15px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}.pill{font-size:11px;font-weight:bold;padding:6px 9px;border-radius:999px;white-space:nowrap}.available{background:#e2f7eb;color:#087846}.unavailable{background:#ffe6e6;color:#b52d2d}.limited{background:#fff0d3;color:#956000}.review{background:#eeeaff;color:#5c4bb1}.alert{padding:12px;border-radius:10px;background:#fff2df;margin:9px 0;font-size:12px}.alert.red{background:#ffecec}.details{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.detail{background:#f6f8fc;padding:10px;border-radius:9px;font-size:12px}.detail b{display:block;color:var(--mut);font-size:10px;margin-bottom:5px}.notice{padding:12px;background:#e7f7ed;color:#176b45;border-radius:10px;font-size:12px;line-height:1.6;margin-top:12px}.notice.warn{background:#fff1d8;color:#885a0d}.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.role{border:1px solid var(--line);border-radius:11px;padding:12px}.role b{font-size:13px}.role p{font-size:11px;color:var(--mut);line-height:1.5}.mobile{display:none}
+
+/* Professional refresh */
+body{background:linear-gradient(135deg,#f4f7fb 0%,#eef4fb 100%)}
+.side{background:linear-gradient(180deg,#0e2746 0%,#163b63 100%);box-shadow:8px 0 30px #0b24400d}
+.main{background:transparent}
+.top{position:sticky;top:0;z-index:4;box-shadow:0 2px 14px #17345b08}
+.content{max-width:1400px;margin:auto}
+.card{transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-1px);box-shadow:0 8px 24px #17345b12}
+.btn{cursor:pointer;transition:filter .18s ease,transform .18s ease}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.side button{cursor:pointer;transition:background .18s ease,padding-left .18s ease}
+.side button:hover{padding-left:15px}
+h2{color:#183153}
+.field{margin-top:12px}
+.field label{display:block;font-size:11px;font-weight:bold;color:#71809a;margin-bottom:6px}
+@media(max-width:600px){
+  .top{gap:8px;align-items:center}
+  .top>b,.top>span{font-size:10px}
+  .top .mut{max-width:130px;text-align:right}
+  .title{align-items:flex-start}
+  .title .pill{font-size:9px}
+  .metric strong{font-size:23px}
+  .metric p{font-size:11px}
+}
+
+@media(max-width:800px){.side{width:190px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.roles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.side{display:none}.content{padding:14px;padding-bottom:85px}.top{padding:14px}.title h1{font-size:22px}.grid{gap:8px}.card{padding:13px}.search{grid-template-columns:1fr}.details{grid-template-columns:1fr}.roles{grid-template-columns:1fr}.mobile{position:fixed;display:flex;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--line);justify-content:space-around;padding:8px;z-index:5}.mobile button{border:0;background:none;font-size:10px;color:var(--mut)}.mobile button.active{color:var(--b);font-weight:bold}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side"><div class="brand">✚ Lab<span>Check</span><div style="font-size:10px;color:#a9c2df;font-weight:normal;margin-top:6px">Laboratory Availability System</div></div><div id="sideNav"></div><p style="font-size:11px;color:#9fb3ce;margin-top:35px">Better communication.<br>Better outcomes.</p></aside>
+<main class="main"><header class="top">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:38px;height:38px;border-radius:12px;background:#e7f1ff;color:#2478df;display:grid;place-items:center;font-size:21px">✚</div>
+        <div><b style="display:block">مستشفى الإيمان العام</b><span class="mut">Al-Iman General Hospital · Laboratory</span></div>
+      </div>
+      <span class="mut">ReYouf Al-Bishi · Laboratory User</span>
+    </header><section class="content" id="view"></section><footer class="mut" style="text-align:center;padding:20px">LabCheck v1.0 · Demonstration environment · No real patient data</footer></main>
+</div><nav class="mobile" id="mobileNav"></nav>
+<script>
+const tests=[
+['Troponin I','Cardiac Markers','Available','Routine operation','Today, 08:15 AM','~1 hour','Serum / Plasma'],
+['D-Dimer','Coagulation','Unavailable','Reagent unavailable','Today, 09:45 AM','Unknown','Citrated plasma'],
+['Vitamin D','Hormones','Limited','Low reagent level','Today, 07:30 AM','~2 hours','Serum'],
+['TSH','Hormones','Available','Routine operation','Today, 06:20 AM','~1 hour','Serum'],
+['Ferritin','Immunoassay','Available','Routine operation','Yesterday, 04:10 PM','~1 hour','Serum'],
+['HbA1c','Diabetes','Under Review','Analyzer review','Yesterday, 03:50 PM','To be confirmed','Whole blood'],
+['CK-MB','Cardiac Markers','Unavailable','Scheduled maintenance','Yesterday, 11:40 AM','Unknown','Serum / Plasma']
+];
+const navs=[['dashboard','🏠 Dashboard'],['search','🔎 Search Test'],['pre','🩸 Pre-Collection Check'],['update','⚗ Update Status'],['alerts','🔔 Alerts'],['reports','📊 Reports & Analytics'],['roles','👥 User Management']];
+let page='dashboard',chosen='';
+function cls(s){return s==='Available'?'available':s==='Unavailable'?'unavailable':s==='Limited'?'limited':'review'}
+function ar(s){return {'Available':'متاح','Unavailable':'غير متاح','Limited':'محدود','Under Review':'قيد المراجعة'}[s]||s}
+function badge(s){return `<span class="pill ${cls(s)}">${s} · ${ar(s)}</span>`}
+function go(p){page=p;render()}
+function nav(){let h=navs.map(n=>`<button type="button" class="${page===n[0]?'active':''}" onclick="go('${n[0]}')">${n[1]}</button>`).join('');sideNav.innerHTML=h;mobileNav.innerHTML=navs.slice(0,5).map(n=>`<button type="button" class="${page===n[0]?'active':''}" onclick="go('${n[0]}')">${n[1].split(' ')[0]}<br>${n[0]}</button>`).join('')}
+function head(a,b,c){return `<div class="title"><div><h1>${a} <span style="color:#9aa8bc">|</span> ${b}</h1><p class="mut">${c}</p></div><span class="pill" style="background:#e7f1ff;color:#1765b8">Demo</span></div>`}
+function metric(n,a,b){return `<div class="card metric"><strong>${n}</strong><p>${a}<br>${b}</p></div>`}
+function row(t){return `<div class="row"><div><b>${t[0]}</b><div class="mut">Atellica Solution · ${t[4]}</div></div>${badge(t[2])}</div>`}
+function alerts(){return `<div class="alert red">❗ <b>D-Dimer:</b> reagent unavailable. Contact the laboratory before collection.</div><div class="alert">🛠 <b>Weekly maintenance:</b> availability and turnaround time may be affected.</div>`}
+function dashboard(){return head('Welcome, ReYouf','مرحبًا ريوف','Monitor laboratory test availability and improve communication.')+`<div class="grid">${metric('245','Available Tests','تحاليل متاحة')}${metric('12','Unavailable Tests','تحاليل غير متاحة')}${metric('8','Limited Availability','متاحة بشكل محدود')}${metric('5','Under Review','قيد المراجعة')}</div><div class="card"><div class="title"><h2 style="font-size:16px">🔎 Search for a Test · البحث عن تحليل</h2><button type="button" class="btn alt" onclick="go('search')">Open</button></div><div class="search"><input class="input" placeholder="Troponin I, Vitamin D..."><button type="button" class="btn" onclick="go('search')">Search</button></div></div><div class="two"><div class="card"><h2 style="font-size:16px">Recent Updates</h2>${tests.slice(0,5).map(row).join('')}</div><div class="card"><h2 style="font-size:16px">Availability Overview</h2>${['Available','Unavailable','Limited','Under Review'].map((s,i)=>`<div class="row"><span>${badge(s)}</span><b>${[245,12,8,5][i]}</b></div>`).join('')}</div></div><div class="card"><h2 style="font-size:16px">Important Alerts</h2>${alerts()}</div>`}
+function search(){return head('Search for a Test','البحث عن تحليل','Find status, analyzer information, and notes.')+`<div class="card"><div class="search"><input id="q" class="input" placeholder="Enter test name..." oninput="filter()"><button type="button" class="btn" onclick="filter()">Search</button></div><div class="details"><select id="sf" class="select" onchange="filter()"><option>All statuses</option><option>Available</option><option>Unavailable</option><option>Limited</option><option>Under Review</option></select><select class="select"><option>Atellica Solution</option></select></div><div id="results" style="margin-top:10px">${results(tests)}</div></div>`}
+function results(arr){return arr.map(t=>`<div class="card"><div class="row" style="padding-top:0"><div><b>${t[0]}</b><div class="mut">${t[1]} · Atellica Solution</div></div>${badge(t[2])}</div><div class="details"><div class="detail"><b>Last updated</b>${t[4]}</div><div class="detail"><b>Reason</b>${t[3]}</div></div><button type="button" class="btn alt" style="margin-top:10px" onclick="alert('${t[0]}\nAnalyzer: Atellica Solution\nStatus: ${t[2]}\nSample: ${t[6]}\nTAT: ${t[5]}')">View details</button></div>`).join('')}
+function filter(){let q=(document.getElementById('q').value||'').toLowerCase(),s=document.getElementById('sf').value;resultsBox=document.getElementById('results');resultsBox.innerHTML=results(tests.filter(t=>(t[0]+' '+t[1]).toLowerCase().includes(q)&&(s==='All statuses'||t[2]===s)))}
+function pre(){return head('Pre-Collection Check','التحقق قبل السحب','Check availability before specimen collection.')+`<div class="card"><div class="search"><input id="pq" class="input" placeholder="e.g. Troponin I"><button type="button" class="btn" onclick="checkPre()">Check</button></div><div id="pr"></div></div><div class="card"><h2 style="font-size:16px">Guidance</h2><div class="notice">This tool provides information only. Collection and clinical decisions remain subject to hospital policy.</div></div>`}
+function checkPre(){let q=document.getElementById('pq').value.toLowerCase(),t=tests.find(x=>x[0].toLowerCase().includes(q));pr.innerHTML=t?`<div class="card"><div class="row"><b>${t[0]}</b>${badge(t[2])}</div><div class="details"><div class="detail"><b>Analyzer</b>Atellica Solution</div><div class="detail"><b>Sample</b>${t[6]}</div><div class="detail"><b>Last updated</b>${t[4]}</div><div class="detail"><b>Expected TAT</b>${t[5]}</div></div><div class="notice ${t[2]==='Available'?'':'warn'}">${t[2]==='Available'?'Marked available. Proceed according to hospital policy.':'Contact the laboratory before collection. This is not a clinical decision tool.'}</div></div>`:'<div class="alert">No matching test found.</div>'}
+function update(){return head('Update Test Status','تحديث حالة التحليل','Authorized laboratory staff can update test information.')+`<div class="two"><div class="card"><h2 style="font-size:16px">Test list</h2>${tests.map(t=>`<div class="row"><span><b>${t[0]}</b><br><span class="mut">${t[2]}</span></span><button type="button" class="btn alt" onclick="edit('${t[0]}')">Update</button></div>`).join('')}</div><div class="card"><h2 style="font-size:16px">Update form</h2><div id="form"><p class="mut">Choose a test from the list.</p></div></div></div>`}
+function edit(name){chosen=name;let t=tests.find(x=>x[0]===name);form.innerHTML=`<b>${t[0]}</b><div class="field"><label>Status</label><select id="ns" class="select">${['Available','Unavailable','Limited','Under Review'].map(s=>`<option ${s===t[2]?'selected':''}>${s}</option>`).join('')}</select></div><div class="field"><label>Reason</label><select id="nr" class="select"><option>Routine operation</option><option>Reagent unavailable</option><option>Low reagent level</option><option>Scheduled maintenance</option><option>Analyzer review</option></select></div><div class="field"><label>Notes</label><textarea id="nn" class="textarea" rows="3"></textarea></div><button type="button" class="btn" onclick="save()">Save update</button><div class="notice warn">Local demo only. Not connected to hospital systems.</div>`}
+function save(){let t=tests.find(x=>x[0]===chosen);t[2]=document.getElementById('ns').value;t[3]=document.getElementById('nr').value;t[4]='Just now';alert('Saved locally in this demo.');render()}
+function alertsPage(){return head('Alerts','التنبيهات','Important notifications about availability and maintenance.')+`<div class="grid">${metric('3','Critical','حرجة')}${metric('5','Warnings','تحذيرات')}${metric('4','Information','معلومات')}${metric('12','Resolved','تم حلها')}</div><div class="card">${alerts()}<div class="alert">⚠️ <b>Vitamin D:</b> limited reagent level. Laboratory review required.</div><div class="alert">ℹ️ <b>Reminder:</b> always check the latest status before collection.</div></div>`}
+function reports(){return head('Reports & Analytics','التقارير والإحصائيات','Review quality indicators using aggregated data.')+`<div class="grid">${metric('2,450','Total Requests','إجمالي الطلبات')}${metric('120','Cancelled Tests','طلبات ملغاة')}${metric('80','Delayed Results','نتائج متأخرة')}${metric('98%','System Uptime','جاهزية النظام')}</div><div class="two"><div class="card"><h2 style="font-size:16px">Status Trend · اتجاه الحالة</h2><div style="height:160px;display:flex;align-items:end;gap:8px;border-bottom:1px solid var(--line);padding-top:20px">${[35,55,42,70,48,80,61,90,60,75,45,68].map((x,i)=>`<div style="flex:1;height:${x}%;background:#2478df;border-radius:6px 6px 0 0"></div>`).join('')}</div><p class="mut">Illustrative data. Replace with approved hospital data.</p></div><div class="card"><h2 style="font-size:16px">Quality Indicators</h2>${[['Pre-collection checks','84%'],['Timely status updates','91%'],['Avoidable cancellations','↓ 28%'],['User feedback','76%']].map(x=>`<div class="row"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div></div><div class="card"><div class="notice">Use aggregated data only. Do not include patient identifiers in quality reports.</div></div>`}
+function roles(){return head('User Management','إدارة المستخدمين','Role-based access and secure system permissions.')+`<div class="card"><h2 style="font-size:16px">Roles · الأدوار</h2><div class="roles">${[['System Administrator','Full configuration and audit access'],['Laboratory Supervisor','Manage statuses and review changes'],['Laboratory Staff','Update status and view information'],['Phlebotomist','Read-only pre-collection check'],['Physician','View availability and alerts'],['Viewer','Read-only access']].map(x=>`<div class="role"><b>${x[0]}</b><p>${x[1]}</p><span class="pill available">Role-based</span></div>`).join('')}</div></div><div class="card"><h2 style="font-size:16px">Permission Matrix</h2><div class="row"><span>View test availability</span><b>✓ All relevant users</b></div><div class="row"><span>Update test status</span><b>✓ Authorized lab staff</b></div><div class="row"><span>Manage users</span><b>✓ Administrator</b></div><div class="row"><span>View reports</span><b>✓ Quality / approved roles</b></div></div>`}
+function render(){nav();view.innerHTML={dashboard,search,pre,update,alerts:alertsPage,reports,roles}[page]()}
+render();
+</script>
+</body>
+</html>
